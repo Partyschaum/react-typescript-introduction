@@ -5,14 +5,10 @@ interface Props {
   onClick: () => void
 }
 
-interface State { }
-
-export default class Square extends React.Component<Props, State> {
-  render() {
-    return (
-      <button className="square" onClick={() => this.props.onClick()}>
-        {this.props.value}
-      </button>
-    )
-  }
+export default function Square({ value, onClick }: Props) {
+  return (
+    <button className="square" onClick={onClick}>
+      {value}
+    </button>
+  )
 }
