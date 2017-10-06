@@ -1,9 +1,33 @@
 import * as React from 'react'
 import Square from './Square'
 
-export default class Board extends React.Component {
+interface Props { }
+
+interface State {
+  squares: string[]
+}
+
+export default class Board extends React.Component<Props, State> {
+  constructor() {
+    super()
+    this.state = {
+      squares: Array(9).fill('')
+    }
+  }
+
+  handleClick(i: number) {
+    const squares = this.state.squares.slice()
+    squares[i] = 'X'
+    this.setState({ squares })
+  }
+
   renderSquare(i: number) {
-    return <Square value={i} />
+    return (
+      <Square
+        value={this.state.squares[i]}
+        onClick={() => this.handleClick(i)}
+      />
+    )
   }
 
   render() {
